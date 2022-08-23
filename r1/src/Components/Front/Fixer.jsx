@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import FrontContext from "./FrontContext";
+import { BsHeart } from "react-icons/bs";
 
 function Fixers({ fixer }) {
   const { setRateNow } = useContext(FrontContext);
 
-  const [rate, setRate] = useState("5");
-
-  console.log(fixer.rate)
+  const [rate, setRate] = useState("0");
 
   const rateIt = (e) => {
     setRate(e.target.value);
@@ -14,7 +13,6 @@ function Fixers({ fixer }) {
       rate: parseInt(e.target.value),
       id: fixer.id,
     });
-        console.log(fixer.rate_sum)
   };
 
   return (
@@ -41,25 +39,17 @@ function Fixers({ fixer }) {
               <img src={fixer.photo} alt="nice" />
             </div>
           ) : null}
-          <b className="ml-2">
-                {
-                    fixer.rate_sum ? 'Rate: ' + (fixer.rate_sum / fixer.rates).toFixed(2) + ' / 10' : 'No rates yet'
-                }
-            </b>
         </div>
-        <div className="form-group mt-3">
-          <label className="mr-2">Rate it!</label>
-          <select value={rate} onChange={rateIt}>
-            {[...Array(10)].map((_, i) => (
-              <option key={i} value={i + 1}>
-                {i + 1}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div className="buttons">
-          {/* <button type="button" className="btn btn-outline-success ml-2" onClick={handleEdit}>Edit</button> */}
-          {/* <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button> */}
+        <div className="rate mt-2">
+          <label className="mr-2">Įvertink!</label>
+          <button value={rate} onClick={rateIt}>
+            <BsHeart />
+          </button>
+          <p>
+            {fixer.rates
+              ? "Paspaudimų skaičius: " + fixer.rates
+              : "No rates yet"}
+          </p>
         </div>
       </div>
     </li>

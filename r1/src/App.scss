@@ -2,113 +2,10 @@ body {
   background-color: #505764;
 }
 
-.list-group-item {
-  .item-front {
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      flex-direction: column;
-      width: 100%;
-      .content {
-          display: flex;
-          align-items: center;
-          justify-content: flex-start;
-      }
-      .form-group {
-          width: 100%;
-      }
-      textarea {
-          width: 100%;
-      }
-      .nest-content {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          width: 100%;
-          li {
-              background-color: aliceblue;
-              color: pink;
-          }
-      }
-      .buttons {
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-      }
-      b {
-          margin-right: 7px;
-      }
-      i {
-          margin-left: 7px;
-      }
-      u {
-          margin-left: 7px;
-          color: skyblue;
-      }
-  }
-}
 
 .modal {
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
-}
-
-.show-message {
-  display: flex;
-  position: fixed;
-  bottom: 50px;
-  right: 50px;
-  width: 100%;
-  justify-content: flex-end;
-  flex-direction: column;
-  align-items: flex-end;
-  z-index: 3;
-  opacity: 0.9;
-  .alert-danger {
-      background-color: #f8d7dac2;
-  }
-  .alert-info {
-      background-color: #d1ecf1c2;
-  }
-  .alert-success {
-      background-color: #d4eddac2;
-  }
-  div {
-      width: 50%;
-      margin-right: 30px;
-  }
-}
-
-// .show-message {
-//     display: flex;
-//     position: fixed;
-//     top: 100px;
-//     right: 35px;
-//     width: 100%;
-//     justify-content: flex-end;
-//   }
-
-.alert {
-  background: aquamarine;
-  // border: 1px solid aquamarine;
-  border-radius: 6px;
-  padding: 1rem;
-  font-weight: bold;
-  color: #282c34;
-  // text-transform: uppercase;
-  opacity: 0.9;
-}
-
-button.with-loader {
-  .spinner-border {
-      display: none;
-  }
-}
-
-button.with-loader:disabled {
-  .spinner-border {
-      display: inline-block;
-  }
 }
 
 nav.nav {
@@ -165,4 +62,14 @@ nav.nav {
 .total {
   display: flex;
   justify-content: flex-end;
+}
+
+.rate {
+  position: absolute;
+    top: 0;
+    right: 15px;
+  button {
+    border: none;
+    background: none;
+  }
 }
