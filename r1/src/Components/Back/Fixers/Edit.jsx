@@ -4,7 +4,7 @@ import getBase64 from "../../../Functions/getBase64.js";
 
 function Edit() {
 
-  const { modalFixers, setEditFixers, setModalFixers, fixers, setDeletePhoto } = useContext(BackContext);
+  const { modalFixers, setEditFixers, setModalFixers, fixers, services, setDeletePhoto } = useContext(BackContext);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -21,11 +21,11 @@ useEffect(() => {
     setName(modalFixers.name);
     setSurname(modalFixers.surname);
     setSpecialization(modalFixers.specialization);
-    setServiceName(modalFixers.service_name);
+    setServiceName(services.filter(service => service.title === modalFixers.serv)[0].id);
     setCity(modalFixers.city);
 
     setPhotoPrint(modalFixers.photo);
-}, [modalFixers, fixers]);
+}, [modalFixers, services]);
 
 const doPhoto = () => {
   getBase64(fileInput.current.files[0])
@@ -40,7 +40,7 @@ const handleEdit = () => {
         id: modalFixers.id,
         surname: surname,
         specialization: specialization,
-        service_name: serviceName,
+        serv: parseInt(serviceName),
         city: city,
         photo: photoPrint
     };
@@ -105,14 +105,21 @@ const handleDeletePhoto = () => {
           <small className="form-text text-muted">Įveskite specializaciją.</small>
         </div>
         <div className="form-group">
-          <label>Serviso pavadinimas</label>
-          <input
-            type="text"
+          <label>Servisas</label>
+          <select
             className="form-control"
             value={serviceName}
             onChange={(e) => setServiceName(e.target.value)}
-          ></input>
-          <small className="form-text text-muted">Įveskite serviso pavadinimą.</small>
+          >
+            <option value="0">Pasirinkti servisą</option>
+            {services
+              ? services.map((service) => (
+                  <option key={service.id} value={service.id}>
+                    {service.title}
+                  </option>
+                ))
+              : null}
+          </select>
         </div>
         <div className="form-group">
           <label>Miestas</label>

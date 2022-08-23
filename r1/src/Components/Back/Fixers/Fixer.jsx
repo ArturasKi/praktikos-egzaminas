@@ -20,7 +20,7 @@ function Fixers({fixers}) {
                     <p>Vardas: <b>{fixers.name}</b></p>
                     <p>Pavardė: <b>{fixers.surname}</b></p>
                     <p>Specializacija: <b>{fixers.specialization}</b></p>
-                    <p>Serviso pavadinimas: <b>{fixers.service_name}</b></p>
+                    <p>Serviso pavadinimas: <b>{fixers.serv}</b></p>
                     <p>Miestas: <b>{fixers.city}</b></p>
                     {
                         fixers.photo ? <div className="photo-bin"><img src={fixers.photo} alt='nice'/></div> : null

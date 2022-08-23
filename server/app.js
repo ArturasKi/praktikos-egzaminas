@@ -118,8 +118,10 @@ app.post("/login", (req, res) => {
 //BACK READ FIXERS
 app.get("/admin/fixers", (req, res) => {
     const sql = `
-  SELECT *
-  FROM fixers
+  SELECT f.id, f.name, f.surname, f.specialization, s.title AS serv, f.city, f.photo
+  FROM fixers AS f
+  LEFT JOIN services AS s
+  ON s.id = f.service_id
   `;
     con.query(sql, (err, result) => {
         if (err) throw err;
@@ -142,7 +144,7 @@ app.get("/admin/services", (req, res) => {
 //BACK CREATE SERVICE
 app.post("/admin/services", (req, res) => {
   const sql = `
-    INSERT INTO fixers
+    INSERT INTO services
     (title)
     VALUES (?)
     `;
@@ -163,7 +165,7 @@ app.post("/admin/services", (req, res) => {
 app.post("/admin/fixers", (req, res) => {
   const sql = `
     INSERT INTO fixers
-    (name, surname, specialization, service_name, city, photo)
+    (name, surname, specialization, service_id, city, photo)
     VALUES (?, ?, ?, ?, ?, ?)
     `;
   con.query(
@@ -172,7 +174,7 @@ app.post("/admin/fixers", (req, res) => {
       req.body.name,
       req.body.surname,
       req.body.specialization,
-      req.body.service_name,
+      req.body.serv,
       req.body.city,
       req.body.photo
     ],
@@ -185,6 +187,18 @@ app.post("/admin/fixers", (req, res) => {
     }
   );
 });
+
+//BACK DELETE SERVICE
+app.delete("/admin/services/:id", (req, res) => {
+    const sql = `
+    DELETE FROM services
+    WHERE id = ?
+    `;
+    con.query(sql, [req.params.id], (err, result) => {
+        if (err) throw err;
+        res.send({ result, msg: { text: "Servisas buvo ištrintas!", type: "danger" } });
+    });
+  });
 
 //BACK DELETE FIXER
 app.delete("/admin/fixers/:id", (req, res) => {
@@ -202,10 +216,10 @@ app.delete("/admin/fixers/:id", (req, res) => {
 app.put("/admin/fixers/:id", (req, res) => {
   const sql = `
   UPDATE fixers
-  SET name = ?, surname = ?, specialization = ?, service_name = ?, city = ?, photo = ?
+  SET name = ?, surname = ?, specialization = ?, service_id = ?, city = ?, photo = ?
   WHERE id = ?
   `;
-  con.query(sql, [req.body.name, req.body.surname, req.body.specialization, req.body.service_name, req.body.city, req.body.photo, req.params.id], (err, result) => {
+  con.query(sql, [req.body.name, req.body.surname, req.body.specialization, req.body.serv, req.body.city, req.body.photo, req.params.id], (err, result) => {
       if (err) throw err;
       res.send({ result, msg: { text: "Your clothing has been edited!", type: "info" } });
   });

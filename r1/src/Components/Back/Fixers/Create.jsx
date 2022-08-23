@@ -3,7 +3,7 @@ import BackContext from "../BackContext";
 import getBase64 from '../../../Functions/getBase64';
 
 function Create() {
-  const { setCreateFixers } = useContext(BackContext);
+  const { setCreateFixers, services } = useContext(BackContext);
 
   const fileInput = useRef();
 
@@ -19,7 +19,7 @@ function Create() {
         name,
         surname,
         specialization,
-        service_name: serviceName,
+        serv: serviceName,
         city,
         photo: photoPrint
      };
@@ -78,14 +78,21 @@ function Create() {
           <small className="form-text text-muted">Įveskite specializaciją.</small>
         </div>
         <div className="form-group">
-          <label>Serviso pavadinimas</label>
-          <input
-            type="text"
+          <label>Servisas</label>
+          <select
             className="form-control"
             value={serviceName}
             onChange={(e) => setServiceName(e.target.value)}
-          ></input>
-          <small className="form-text text-muted">Įveskite serviso pavadinimą.</small>
+          >
+            <option value="0">Pasirinkti servisą</option>
+            {services
+              ? services.map((service) => (
+                  <option key={service.id} value={service.id}>
+                    {service.title}
+                  </option>
+                ))
+              : null}
+          </select>
         </div>
         <div className="form-group">
           <label>Miestas</label>

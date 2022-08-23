@@ -39,6 +39,20 @@ function Back({show}) {
       .then((res) => setServices(res.data));
   }, [lastUpdate]);
 
+// CREATE SERVICE
+  useEffect(() => {
+    if (null === createServices) return;
+    axios
+      .post("http://localhost:3003/admin/services", createServices, authConfig())
+      .then((res) => {
+        // showMessage(res.data.msg);
+        setLastUpdate(Date.now()); // irasymas, update;
+      })
+      .catch((error) => {
+        // showMessage({ text: error.message, type: "success" });
+      });
+  }, [createServices]);
+
 // CREATE FIXER
   useEffect(() => {
     if (null === createFixers) return;
@@ -52,6 +66,20 @@ function Back({show}) {
         // showMessage({ text: error.message, type: "success" });
       });
   }, [createFixers]);
+
+// DELETE SEVICE
+  useEffect(() => {
+    if (null === deleteServices) return;
+    axios
+      .delete("http://localhost:3003/admin/services/" + deleteServices.id, authConfig())
+      .then((res) => {
+        // showMessage(res.data.msg);
+        setLastUpdate(Date.now()); // irasymas, update;
+      })
+      .catch((error) => {
+        // showMessage({ text: error.message, type: "danger" });
+      });
+  }, [deleteServices]);
 
 // DELETE FIXER
   useEffect(() => {

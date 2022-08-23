@@ -3,10 +3,10 @@ import BackContext from "../BackContext";
 
 function Fixers({services}) {
 
-    const { setDeleteFixers, setModalFixers } = useContext(BackContext);
+    const { setDeleteServices, setModalServices } = useContext(BackContext);
 
     const handleDelete = () => {
-        // setDeleteFixers(fixers);
+        setDeleteServices(services);
     }
     
     const handleEdit = () => {
