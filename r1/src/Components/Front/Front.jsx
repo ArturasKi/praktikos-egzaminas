@@ -17,7 +17,7 @@ function Front() {
     axios
       .get("http://localhost:3003/fixers", authConfig())
       .then((res) => setFixers(res.data));
-  }, []);
+  }, [lastUpdate]);
 
   // CREATE RATE
   useEffect(() => {
