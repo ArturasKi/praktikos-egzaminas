@@ -117,29 +117,29 @@ app.post("/login", (req, res) => {
 
 //BACK READ FIXERS
 app.get("/admin/fixers", (req, res) => {
-    const sql = `
+  const sql = `
   SELECT f.id, f.name, f.surname, f.specialization, s.title AS serv, f.city, f.photo
   FROM fixers AS f
   LEFT JOIN services AS s
   ON s.id = f.service_id
   `;
-    con.query(sql, (err, result) => {
-        if (err) throw err;
-        res.send(result);
-    });
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
+});
 
 //BACK READ SERVICES
 app.get("/admin/services", (req, res) => {
-    const sql = `
+  const sql = `
   SELECT *
   FROM services
   `;
-    con.query(sql, (err, result) => {
-        if (err) throw err;
-        res.send(result);
-    });
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
+});
 
 //BACK CREATE SERVICE
 app.post("/admin/services", (req, res) => {
@@ -148,17 +148,13 @@ app.post("/admin/services", (req, res) => {
     (title)
     VALUES (?)
     `;
-  con.query(
-    sql,
-    [req.body.title],
-    (err, result) => {
-      if (err) throw err;
-      res.send({
-        result,
-        msg: { text: "Servisas buvo sukurtas!", type: "success" },
-      });
-    }
-  );
+  con.query(sql, [req.body.title], (err, result) => {
+    if (err) throw err;
+    res.send({
+      result,
+      msg: { text: "Servisas buvo sukurtas!", type: "success" },
+    });
+  });
 });
 
 //BACK CREATE FIXER
@@ -176,7 +172,7 @@ app.post("/admin/fixers", (req, res) => {
       req.body.specialization,
       req.body.serv,
       req.body.city,
-      req.body.photo
+      req.body.photo,
     ],
     (err, result) => {
       if (err) throw err;
@@ -190,27 +186,33 @@ app.post("/admin/fixers", (req, res) => {
 
 //BACK DELETE SERVICE
 app.delete("/admin/services/:id", (req, res) => {
-    const sql = `
+  const sql = `
     DELETE FROM services
     WHERE id = ?
     `;
-    con.query(sql, [req.params.id], (err, result) => {
-        if (err) throw err;
-        res.send({ result, msg: { text: "Servisas buvo ištrintas!", type: "danger" } });
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) throw err;
+    res.send({
+      result,
+      msg: { text: "Servisas buvo ištrintas!", type: "danger" },
     });
   });
+});
 
 //BACK DELETE FIXER
 app.delete("/admin/fixers/:id", (req, res) => {
-    const sql = `
+  const sql = `
     DELETE FROM fixers
     WHERE id = ?
     `;
-    con.query(sql, [req.params.id], (err, result) => {
-        if (err) throw err;
-        res.send({ result, msg: { text: "Meistro aprašas buvo ištrintas!", type: "danger" } });
+  con.query(sql, [req.params.id], (err, result) => {
+    if (err) throw err;
+    res.send({
+      result,
+      msg: { text: "Meistro aprašas buvo ištrintas!", type: "danger" },
     });
   });
+});
 
 //BACK EDIT FIXER
 app.put("/admin/fixers/:id", (req, res) => {
@@ -219,22 +221,55 @@ app.put("/admin/fixers/:id", (req, res) => {
   SET name = ?, surname = ?, specialization = ?, service_id = ?, city = ?, photo = ?
   WHERE id = ?
   `;
-  con.query(sql, [req.body.name, req.body.surname, req.body.specialization, req.body.serv, req.body.city, req.body.photo, req.params.id], (err, result) => {
+  con.query(
+    sql,
+    [
+      req.body.name,
+      req.body.surname,
+      req.body.specialization,
+      req.body.serv,
+      req.body.city,
+      req.body.photo,
+      req.params.id,
+    ],
+    (err, result) => {
       if (err) throw err;
-      res.send({ result, msg: { text: "Your clothing has been edited!", type: "info" } });
+      res.send({
+        result,
+        msg: { text: "Your clothing has been edited!", type: "info" },
+      });
+    }
+  );
+});
+
+//FRONT READ FIXERS
+app.get("/fixers", (req, res) => {
+  const sql = `
+  SELECT f.id, f.name, f.surname, f.specialization, s.title AS serv, f.city, f.photo, f.rates, f.rate_sum
+  FROM fixers AS f
+  LEFT JOIN services AS s
+  ON s.id = f.service_id
+`;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.send(result);
   });
 });
 
-  //FRONT READ FIXERS
-app.get("/fixers", (req, res) => {
+app.put("/rates/:id", (req, res) => {
   const sql = `
-SELECT *
-FROM fixers
+  UPDATE fixers
+  SET rates = rates + 1, rate_sum = rate_sum + ?
+  WHERE id = ?
 `;
-  con.query(sql, (err, result) => {
+  con.query(
+    sql,
+    [req.body.rate, req.params.id],
+    (err, result) => {
       if (err) throw err;
-      res.send(result);
-  });
+      res.send({ result, msg: { text: "Ačiū už įvertinimą!", type: "success" } });
+    }
+  );
 });
 
 app.listen(port, () => {

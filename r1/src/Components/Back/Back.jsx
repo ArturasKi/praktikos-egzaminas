@@ -47,11 +47,9 @@ function Back({show}) {
     axios
       .post("http://localhost:3003/admin/services", createServices, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "success" });
       });
   }, [createServices]);
 
@@ -61,11 +59,9 @@ function Back({show}) {
     axios
       .post("http://localhost:3003/admin/fixers", createFixers, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "success" });
       });
   }, [createFixers]);
 
@@ -75,11 +71,9 @@ function Back({show}) {
     axios
       .delete("http://localhost:3003/admin/services/" + deleteServices.id, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "danger" });
       });
   }, [deleteServices]);
 
@@ -89,11 +83,9 @@ function Back({show}) {
     axios
       .delete("http://localhost:3003/admin/fixers/" + deleteFixers.id, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "danger" });
       });
   }, [deleteFixers]);
 
@@ -103,11 +95,9 @@ function Back({show}) {
     axios
       .delete("http://localhost:3003/admin/photos/" + deletePhoto.id, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "danger" });
       });
   }, [deletePhoto]);
 
@@ -117,11 +107,9 @@ function Back({show}) {
     axios
       .put("http://localhost:3003/admin/services/" + editServices.id, editServices, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "info" });
       });
   }, [editServices]);
 
@@ -131,18 +119,11 @@ function Back({show}) {
     axios
       .put("http://localhost:3003/admin/fixers/" + editFixers.id, editFixers, authConfig())
       .then((res) => {
-        // showMessage(res.data.msg);
-        setLastUpdate(Date.now()); // irasymas, update;
+        setLastUpdate(Date.now());
       })
       .catch((error) => {
-        // showMessage({ text: error.message, type: "info" });
       });
   }, [editFixers]);
-
-//   const showMessage = (msg) => {
-//     setMessage(msg); // set'inam msg, kad pasirodytų;
-//     setTimeout(() => setMessage(null), 5000); // vienkartinis intervalas, žinutė dingsta už 5s;
-//   };
 
   return (
     <BackContext.Provider value={{

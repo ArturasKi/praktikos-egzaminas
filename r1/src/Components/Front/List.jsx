@@ -14,7 +14,7 @@ function List() {
             <div className="card-body">
                 <ul className="list-group">
                     {
-                    fixers ? fixers.map(fixer => <Fixer key={fixer.id} fixers={fixer}></Fixer>) : null
+                    fixers ? fixers.map(fixer => <Fixer key={fixer.id} fixer={fixer}></Fixer>) : null
                     }
                 </ul>
             </div>
