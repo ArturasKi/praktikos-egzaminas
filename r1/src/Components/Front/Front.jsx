@@ -3,6 +3,7 @@ import { authConfig } from "../../Functions/auth";
 import { useEffect, useState } from "react";
 import FrontContext from "./FrontContext";
 import List from "./List";
+import Nav from "./Nav";
 
 function Front() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());
@@ -22,7 +23,7 @@ function Front() {
         fixers,
       }}
     >
-      {/* <Nav /> */}
+      <Nav />
       <div className="container">
         <div className="row">
           <div className="col-12">

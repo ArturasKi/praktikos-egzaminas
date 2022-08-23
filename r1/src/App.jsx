@@ -13,7 +13,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Front show="list" />} />
+          <Route path="/" element={<RequireAuth role="user"><Front show="list" /></RequireAuth>} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
           <Route path="/admin" element={<RequireAuth role="admin"><Back show="admin"/></RequireAuth>} />

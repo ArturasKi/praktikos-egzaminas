@@ -10,7 +10,7 @@ function Fixers({services}) {
     }
     
     const handleEdit = () => {
-        // setModalFixers(fixers);
+        setModalServices(services);
     }
 
     return (

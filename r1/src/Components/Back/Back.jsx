@@ -8,6 +8,7 @@ import ListFixers from "./Fixers/List";
 import EditFixers from "./Fixers/Edit";
 import ListServices from './Services/List';
 import CreateServices from './Services/Create';
+import EditServices from './Services/Edit';
 
 function Back({show}) {
 
@@ -23,7 +24,8 @@ function Back({show}) {
   const [services, setServices] = useState(null);
   const [createServices, setCreateServices] = useState(null);
   const [deleteServices, setDeleteServices] = useState(null);
-
+  const [editServices, setEditServices] = useState(null);
+  const [modalServices, setModalServices] = useState(null);
 
 // READ FIXERS
   useEffect(() => {
@@ -109,6 +111,20 @@ function Back({show}) {
       });
   }, [deletePhoto]);
 
+  // EDIT SERVICE
+  useEffect(() => {
+    if (null === editServices) return;
+    axios
+      .put("http://localhost:3003/admin/services/" + editServices.id, editServices, authConfig())
+      .then((res) => {
+        // showMessage(res.data.msg);
+        setLastUpdate(Date.now()); // irasymas, update;
+      })
+      .catch((error) => {
+        // showMessage({ text: error.message, type: "info" });
+      });
+  }, [editServices]);
+
   // EDIT FIXER
   useEffect(() => {
     if (null === editFixers) return;
@@ -133,6 +149,9 @@ function Back({show}) {
         services,
         setCreateServices,
         setDeleteServices,
+        setEditServices,
+        modalServices,
+        setModalServices,
         fixers,
         setCreateFixers,
         setDeleteFixers,
@@ -174,6 +193,7 @@ function Back({show}) {
               </div>
             </div>
           </div>
+          <EditServices />
         </>
       ) : show === "admin" ? (
         <>

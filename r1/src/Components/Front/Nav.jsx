@@ -8,7 +8,12 @@ function Nav() {
             <div className="row">
                 <div className="col-12">
                     <nav className="nav">
-                        Meistrų sąrašas
+                        <NavLink to="/" className="nav-link" style={({ isActive }) => // funkcija gauna argumentą isActive, jei true vienas stilus, false - kitas;
+                        isActive ? {
+                            color: 'crimson'
+                        } : undefined
+                        }>Meistrų sąrašas</NavLink>
+                        <Link className="nav-link" to="/logout">Logout</Link>
                     </nav>
                 </div>
             </div>
