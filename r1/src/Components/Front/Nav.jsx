@@ -13,7 +13,7 @@ function Nav() {
                             color: 'crimson'
                         } : undefined
                         }>Meistrų sąrašas</NavLink>
-                        <Link className="nav-link" to="/logout">Logout</Link>
+                        <Link className="nav-link" to="/logout">Atsijungti</Link>
                     </nav>
                 </div>
             </div>

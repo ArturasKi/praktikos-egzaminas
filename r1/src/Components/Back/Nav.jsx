@@ -33,7 +33,7 @@ function Nav() {
                             color: 'crimson'
                         } : undefined
                         }>Vieša sritis</NavLink>
-                        <Link className="nav-link" to="/logout">Logout</Link>
+                        <Link className="nav-link" to="/logout">Atsijungti</Link>
                     </nav>
                 </div>
             </div>

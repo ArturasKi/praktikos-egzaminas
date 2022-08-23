@@ -1,6 +1,5 @@
 import './bootstrap.scss';
 import './App.scss';
-// import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import { login, logout, authConfig } from './Functions/auth';
 import axios from 'axios';
@@ -20,9 +19,6 @@ function App() {
           <Route path="/admin/fixers" element={<RequireAuth role="admin"><Back show="fixers"/></RequireAuth>} />
           <Route path="/admin/create" element={<RequireAuth role="admin"><Back show="create"/></RequireAuth>} />
           <Route path="/admin/services" element={<RequireAuth role="admin"><Back show="services"/></RequireAuth>} />
-          {/* <Route path="/admin/cats" element={<RequireAuth role="admin"><Back show="cats"/></RequireAuth>} />
-          <Route path="/admin/products" element={<RequireAuth role="admin"><Back show="products"/></RequireAuth>} />
-          <Route path="/admin/comments" element={<RequireAuth role="admin"><Back show="com"/></RequireAuth>} /> */}
       </Routes>
     </BrowserRouter>
   );

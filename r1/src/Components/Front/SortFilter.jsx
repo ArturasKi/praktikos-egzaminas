@@ -14,14 +14,14 @@ function SortFilter() {
   return (
     <div className="card mt-4">
       <div className="card-header">
-        <h2>Sort and Filter</h2>
+        <h2>Paieška</h2>
       </div>
       <div className="card-body">
         <div className="container">
           <div className="row">
             <div className="col-4">
               <div className="form-group">
-                <label>Paieška</label>
+                <label>Įvesti tekstą</label>
                 <input className="form-control" type='text' value={s} onChange={doSearch}></input>
               </div>
             </div>

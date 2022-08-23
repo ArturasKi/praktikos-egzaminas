@@ -6,13 +6,12 @@ function Create() {
 
   const [title, setTitle] = useState("");
 
-
   const handleCreate = () => {
-    const data = { 
-        title
-     };
-     setCreateServices(data);
-     setTitle('');
+    const data = {
+      title,
+    };
+    setCreateServices(data);
+    setTitle("");
   };
 
   return (
@@ -34,7 +33,10 @@ function Create() {
         <button
           type="button"
           className="btn btn-outline-primary with-loader"
-          onClick={handleCreate}>Sukurti</button>
+          onClick={handleCreate}
+        >
+          Sukurti
+        </button>
       </div>
     </div>
   );

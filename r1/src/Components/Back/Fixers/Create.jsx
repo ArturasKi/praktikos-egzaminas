@@ -1,6 +1,6 @@
 import { useContext, useState, useRef } from "react";
 import BackContext from "../BackContext";
-import getBase64 from '../../../Functions/getBase64';
+import getBase64 from "../../../Functions/getBase64";
 
 function Create() {
   const { setCreateFixers, services } = useContext(BackContext);
@@ -15,31 +15,31 @@ function Create() {
   const [photoPrint, setPhotoPrint] = useState(null);
 
   const handleCreate = () => {
-    const data = { 
-        name,
-        surname,
-        specialization,
-        serv: serviceName,
-        city,
-        photo: photoPrint
-     };
-     setCreateFixers(data);
-     setName('');
-     setSurname('');
-     setSpecialization('');
-     setServiceName('');
-     setCity('');
+    const data = {
+      name,
+      surname,
+      specialization,
+      serv: serviceName,
+      city,
+      photo: photoPrint,
+    };
+    setCreateFixers(data);
+    setName("");
+    setSurname("");
+    setSpecialization("");
+    setServiceName("");
+    setCity("");
     setPhotoPrint(null);
     fileInput.current.value = null;
   };
 
   const doPhoto = () => {
     getBase64(fileInput.current.files[0])
-    .then(photo => setPhotoPrint(photo))
-    .catch(_ => {
-      // tylim
-    });
-  }
+      .then((photo) => setPhotoPrint(photo))
+      .catch((_) => {
+
+      });
+  };
 
   return (
     <div className="card mt-4">
@@ -75,7 +75,9 @@ function Create() {
             value={specialization}
             onChange={(e) => setSpecialization(e.target.value)}
           ></input>
-          <small className="form-text text-muted">Įveskite specializaciją.</small>
+          <small className="form-text text-muted">
+            Įveskite specializaciją.
+          </small>
         </div>
         <div className="form-group">
           <label>Servisas</label>
@@ -106,16 +108,26 @@ function Create() {
         </div>
         <div className="form-group">
           <label>Nuotrauka</label>
-          <input ref={fileInput} type="file" className="form-control" onChange={doPhoto}/>
+          <input
+            ref={fileInput}
+            type="file"
+            className="form-control"
+            onChange={doPhoto}
+          />
           <small className="form-text text-muted">Įkelti nuotrauką</small>
         </div>
-          {
-            photoPrint ? <div className="photo-bin"><img src={photoPrint} alt='nice'/></div> : null
-          }
+        {photoPrint ? (
+          <div className="photo-bin">
+            <img src={photoPrint} alt="nice" />
+          </div>
+        ) : null}
         <button
           type="button"
           className="btn btn-outline-primary with-loader"
-          onClick={handleCreate}>Sukurti</button>
+          onClick={handleCreate}
+        >
+          Sukurti
+        </button>
       </div>
     </div>
   );

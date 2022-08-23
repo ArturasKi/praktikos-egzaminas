@@ -2,7 +2,6 @@ body {
   background-color: #505764;
 }
 
-
 .modal {
   display: block;
   background-color: rgba(0, 0, 0, 0.5);
@@ -39,29 +38,6 @@ nav.nav {
   padding: 10px;
   max-width: 250px;
   background-color: lightblue;
-}
-
-.nav-link-cart {
-  position: absolute;
-  right: 0;
-  top: 0;
-  margin-right: 15px;
-}
-
-.order-list {
-  font-size: 11px;
-}
-
-.order-amount {
-  position: absolute;
-  top: -2px;
-  right: 2px;
-  font-weight: bold;
-}
-
-.total {
-  display: flex;
-  justify-content: flex-end;
 }
 
 .rate {

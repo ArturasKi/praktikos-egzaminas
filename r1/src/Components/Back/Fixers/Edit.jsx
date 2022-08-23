@@ -4,7 +4,7 @@ import getBase64 from "../../../Functions/getBase64.js";
 
 function Edit() {
 
-  const { modalFixers, setEditFixers, setModalFixers, fixers, services, setDeletePhoto } = useContext(BackContext);
+  const { modalFixers, setEditFixers, setModalFixers, services, setDeletePhoto } = useContext(BackContext);
 
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -141,9 +141,9 @@ const handleDeletePhoto = () => {
           }
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-outline-primary" onClick={handleEdit}>Save changes</button>
-            <button type="button" className="btn btn-outline-danger" onClick={handleDeletePhoto}>Remove photo</button>
-            <button type="button" className="btn btn-outline-secondary" onClick={() => setModalFixers(null)}>Close</button>
+            <button type="button" className="btn btn-outline-primary" onClick={handleEdit}>Išsaugoti</button>
+            <button type="button" className="btn btn-outline-danger" onClick={handleDeletePhoto}>Ištrinti nuotrauką</button>
+            <button type="button" className="btn btn-outline-secondary" onClick={() => setModalFixers(null)}>Uždaryti</button>
           </div>
         </div>
       </div>

@@ -20,8 +20,8 @@ function Fixers({services}) {
                     <p>Serviso pavadinimas: <b>{services.title}</b></p>
                 </div>
                 <div className="buttons">
-                    <button type="button" className="btn btn-outline-success ml-2" onClick={handleEdit}>Edit</button>
-                    <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button>
+                    <button type="button" className="btn btn-outline-success ml-2" onClick={handleEdit}>Redaguoti</button>
+                    <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Ištrinti</button>
                 </div>
             </div>
         </li>

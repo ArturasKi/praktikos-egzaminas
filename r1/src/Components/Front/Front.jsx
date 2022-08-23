@@ -10,23 +10,7 @@ function Front() {
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
   const [fixers, setFixers] = useState(null);
-  // const [search, setSearch] = useState('');
-
   const [rateNow, setRateNow] = useState(null);
-
-  // READ PRUDUCT
-  // useEffect(() => {
-
-  //   let query;
-  //   if (!search) {
-  //     query = ''; // jei filtras yra 0, tai query yra tuščias string'as, nieko jame nėra;
-  //   } else {
-  //     query = '?s=' + search
-  //   }
-  //   axios
-  //     .get("http://localhost:3003/fixers/" + query, authConfig())
-  //     .then((res) => setFixers((res.data)));
-  //   }, [search, lastUpdate]);
 
   // READ FIXERS
   useEffect(() => {
@@ -49,8 +33,7 @@ function Front() {
     <FrontContext.Provider
       value={{
         fixers,
-        setRateNow,
-        // setSearch
+        setRateNow
       }}
     >
       <Nav />

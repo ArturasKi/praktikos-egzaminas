@@ -214,6 +214,22 @@ app.delete("/admin/fixers/:id", (req, res) => {
   });
 });
 
+//BACK EDIT SERVICE
+app.put("/admin/services/:id", (req, res) => {
+  const sql = `
+  UPDATE services
+  SET title = ?
+  WHERE id = ?
+  `;
+  con.query(sql, [req.body.title, req.params.id], (err, result) => {
+    if (err) throw err;
+    res.send({
+      result,
+      msg: { text: "Your clothing has been edited!", type: "info" },
+    });
+  });
+});
+
 //BACK EDIT FIXER
 app.put("/admin/fixers/:id", (req, res) => {
   const sql = `
@@ -262,14 +278,10 @@ app.put("/rates/:id", (req, res) => {
   SET rates = rates + 1, rate_sum = rate_sum + ?
   WHERE id = ?
 `;
-  con.query(
-    sql,
-    [req.body.rate, req.params.id],
-    (err, result) => {
-      if (err) throw err;
-      res.send({ result, msg: { text: "Ačiū už įvertinimą!", type: "success" } });
-    }
-  );
+  con.query(sql, [req.body.rate, req.params.id], (err, result) => {
+    if (err) throw err;
+    res.send({ result, msg: { text: "Ačiū už įvertinimą!", type: "success" } });
+  });
 });
 
 app.listen(port, () => {

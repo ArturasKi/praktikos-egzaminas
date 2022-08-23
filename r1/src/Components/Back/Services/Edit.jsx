@@ -16,7 +16,8 @@ useEffect(() => {
 
 const handleEdit = () => {
     const data = {
-        title
+        title: title,
+        id: modalServices.id
     };
     console.log(data);
     setEditServices(data);
@@ -54,8 +55,8 @@ const handleEdit = () => {
         </div>
           </div>
           <div className="modal-footer">
-            <button type="button" className="btn btn-outline-primary" onClick={handleEdit}>Save changes</button>
-            <button type="button" className="btn btn-outline-secondary" onClick={() => setModalServices(null)}>Close</button>
+            <button type="button" className="btn btn-outline-primary" onClick={handleEdit}>Išsaugoti</button>
+            <button type="button" className="btn btn-outline-secondary" onClick={() => setModalServices(null)}>Uždaryti</button>
           </div>
         </div>
       </div>
