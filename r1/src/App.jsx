@@ -16,8 +16,10 @@ function App() {
           <Route path="/" element={<Front show="list" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
-          <Route path="/admin" element={<RequireAuth role="admin"><Back show="create"/></RequireAuth>} />
+          <Route path="/admin" element={<RequireAuth role="admin"><Back show="admin"/></RequireAuth>} />
           <Route path="/admin/fixers" element={<RequireAuth role="admin"><Back show="fixers"/></RequireAuth>} />
+          <Route path="/admin/create" element={<RequireAuth role="admin"><Back show="create"/></RequireAuth>} />
+          <Route path="/admin/services" element={<RequireAuth role="admin"><Back show="services"/></RequireAuth>} />
           {/* <Route path="/admin/cats" element={<RequireAuth role="admin"><Back show="cats"/></RequireAuth>} />
           <Route path="/admin/products" element={<RequireAuth role="admin"><Back show="products"/></RequireAuth>} />
           <Route path="/admin/comments" element={<RequireAuth role="admin"><Back show="com"/></RequireAuth>} /> */}

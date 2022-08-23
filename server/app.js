@@ -127,6 +127,38 @@ app.get("/admin/fixers", (req, res) => {
     });
   });
 
+//BACK READ SERVICES
+app.get("/admin/services", (req, res) => {
+    const sql = `
+  SELECT *
+  FROM services
+  `;
+    con.query(sql, (err, result) => {
+        if (err) throw err;
+        res.send(result);
+    });
+  });
+
+//BACK CREATE SERVICE
+app.post("/admin/services", (req, res) => {
+  const sql = `
+    INSERT INTO fixers
+    (title)
+    VALUES (?)
+    `;
+  con.query(
+    sql,
+    [req.body.title],
+    (err, result) => {
+      if (err) throw err;
+      res.send({
+        result,
+        msg: { text: "Servisas buvo sukurtas!", type: "success" },
+      });
+    }
+  );
+});
+
 //BACK CREATE FIXER
 app.post("/admin/fixers", (req, res) => {
   const sql = `

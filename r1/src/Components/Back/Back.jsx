@@ -3,9 +3,11 @@ import axios from "axios";
 import Nav from './Nav';
 import BackContext from "./BackContext";
 import { authConfig } from '../../Functions/auth.js';
-import Create from "./Fixers/Create";
-import List from "./Fixers/List";
-import Edit from "./Fixers/Edit";
+import CreateFixers from "./Fixers/Create";
+import ListFixers from "./Fixers/List";
+import EditFixers from "./Fixers/Edit";
+import ListServices from './Services/List';
+import CreateServices from './Services/Create';
 
 function Back({show}) {
 
@@ -18,11 +20,23 @@ function Back({show}) {
   const [modalFixers, setModalFixers] = useState(null);
   const [deletePhoto, setDeletePhoto] = useState(null);
 
+  const [services, setServices] = useState(null);
+  const [createServices, setCreateServices] = useState(null);
+  const [deleteServices, setDeleteServices] = useState(null);
+
+
 // READ FIXERS
   useEffect(() => {
     axios
       .get("http://localhost:3003/admin/fixers", authConfig())
       .then((res) => setFixers(res.data));
+  }, [lastUpdate]);
+
+// READ SERVICES
+  useEffect(() => {
+    axios
+      .get("http://localhost:3003/admin/services", authConfig())
+      .then((res) => setServices(res.data));
   }, [lastUpdate]);
 
 // CREATE FIXER
@@ -88,6 +102,9 @@ function Back({show}) {
 
   return (
     <BackContext.Provider value={{
+        services,
+        setCreateServices,
+        setDeleteServices,
         fixers,
         setCreateFixers,
         setDeleteFixers,
@@ -102,7 +119,7 @@ function Back({show}) {
           <div className='container'>
             <div className='row justify-content-center'>
               <div className="col-6">
-                  <Create />
+                  <CreateFixers />
               </div>
             </div>
           </div>
@@ -113,11 +130,33 @@ function Back({show}) {
           <div className='container'>
             <div className='row justify-content-center'>
               <div className="col-10">
-                  <List />
+                  <ListFixers />
               </div>
             </div>
           </div>
-          <Edit />
+          <EditFixers />
+        </>
+      ) : show === "services" ? (
+        <>
+          <Nav />
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className="col-10">
+                  <ListServices />
+              </div>
+            </div>
+          </div>
+        </>
+      ) : show === "admin" ? (
+        <>
+          <Nav />
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className="col-10">
+                  <CreateServices />
+              </div>
+            </div>
+          </div>
         </>
       ) : null}
     </BackContext.Provider>
