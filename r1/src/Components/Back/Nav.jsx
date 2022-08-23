@@ -12,12 +12,17 @@ function Nav() {
                         isActive ? {
                             color: 'crimson'
                         } : undefined
-                        }>Admin</NavLink>
+                        }>Kurti naują</NavLink>
+                        <NavLink to="/admin/fixers" className="nav-link" style={({ isActive }) => // funkcija gauna argumentą isActive, jei true vienas stilus, false - kitas;
+                        isActive ? {
+                            color: 'crimson'
+                        } : undefined
+                        }>Meistrų sąrašas</NavLink>
                         <NavLink to="/" className="nav-link" style={({ isActive }) => // funkcija gauna argumentą isActive, jei true vienas stilus, false - kitas;
                         isActive ? {
                             color: 'crimson'
                         } : undefined
-                        }>Front</NavLink>
+                        }>Vieša sritis</NavLink>
                         <Link className="nav-link" to="/logout">Logout</Link>
                     </nav>
                 </div>

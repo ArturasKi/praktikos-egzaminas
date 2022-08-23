@@ -166,6 +166,31 @@ app.delete("/admin/fixers/:id", (req, res) => {
     });
   });
 
+//BACK EDIT FIXER
+app.put("/admin/fixers/:id", (req, res) => {
+  const sql = `
+  UPDATE fixers
+  SET name = ?, surname = ?, specialization = ?, service_name = ?, city = ?, photo = ?
+  WHERE id = ?
+  `;
+  con.query(sql, [req.body.name, req.body.surname, req.body.specialization, req.body.service_name, req.body.city, req.body.photo, req.params.id], (err, result) => {
+      if (err) throw err;
+      res.send({ result, msg: { text: "Your clothing has been edited!", type: "info" } });
+  });
+});
+
+  //FRONT READ FIXERS
+app.get("/fixers", (req, res) => {
+  const sql = `
+SELECT *
+FROM fixers
+`;
+  con.query(sql, (err, result) => {
+      if (err) throw err;
+      res.send(result);
+  });
+});
+
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 });

@@ -1,17 +1,17 @@
 import { useContext } from "react";
-import BackContext from "../BackContext";
+import FrontContext from "./FrontContext";
 
 function Fixers({fixers}) {
 
-    const { setDeleteFixers, setModalFixers } = useContext(BackContext);
+    const { setDeleteFixers } = useContext(FrontContext);
 
     const handleDelete = () => {
         setDeleteFixers(fixers);
     }
     
-    const handleEdit = () => {
-        setModalFixers(fixers);
-    }
+    // // const handleEdit = () => {
+    // //     setModalClothes(clothes);
+    // }
 
     return (
         <li className="list-group-item">
@@ -27,7 +27,7 @@ function Fixers({fixers}) {
                     }
                 </div>
                 <div className="buttons">
-                    <button type="button" className="btn btn-outline-success ml-2" onClick={handleEdit}>Edit</button>
+                    {/* <button type="button" className="btn btn-outline-success ml-2" onClick={handleEdit}>Edit</button> */}
                     <button type="button" className="btn btn-outline-danger ml-2" onClick={handleDelete}>Delete</button>
                 </div>
             </div>

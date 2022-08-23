@@ -6,17 +6,18 @@ import { login, logout, authConfig } from './Functions/auth';
 import axios from 'axios';
 import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Back from "./Components/Back/Back"; 
+import Front from './Components/Front/Front';
 
 function App() {
     
   return (
     <BrowserRouter>
       <Routes>
-          {/* <Route path="/" element={<RequireAuth role="user" ><Front show="clothes" /></RequireAuth>} />
-          <Route path="/cart" element={<RequireAuth role="user"><Front show="cart"/></RequireAuth>} /> */}
+          <Route path="/" element={<Front show="list" />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/logout" element={<LogoutPage />} />
-          <Route path="/admin" element={<RequireAuth role="admin"><Back show="fixers"/></RequireAuth>} />
+          <Route path="/admin" element={<RequireAuth role="admin"><Back show="create"/></RequireAuth>} />
+          <Route path="/admin/fixers" element={<RequireAuth role="admin"><Back show="fixers"/></RequireAuth>} />
           {/* <Route path="/admin/cats" element={<RequireAuth role="admin"><Back show="cats"/></RequireAuth>} />
           <Route path="/admin/products" element={<RequireAuth role="admin"><Back show="products"/></RequireAuth>} />
           <Route path="/admin/comments" element={<RequireAuth role="admin"><Back show="com"/></RequireAuth>} /> */}

@@ -5,8 +5,9 @@ import BackContext from "./BackContext";
 import { authConfig } from '../../Functions/auth.js';
 import Create from "./Fixers/Create";
 import List from "./Fixers/List";
+import Edit from "./Fixers/Edit";
 
-function Back() {
+function Back({show}) {
 
   const [lastUpdate, setLastUpdate] = useState(Date.now());
 
@@ -14,6 +15,7 @@ function Back() {
   const [createFixers, setCreateFixers] = useState(null);
   const [deleteFixers, setDeleteFixers] = useState(null);
   const [editFixers, setEditFixers] = useState(null);
+  const [modalFixers, setModalFixers] = useState(null);
   const [deletePhoto, setDeletePhoto] = useState(null);
 
 // READ FIXERS
@@ -65,7 +67,7 @@ function Back() {
       });
   }, [deletePhoto]);
 
-  // EDIT CLOTHING
+  // EDIT FIXER
   useEffect(() => {
     if (null === editFixers) return;
     axios
@@ -90,19 +92,34 @@ function Back() {
         setCreateFixers,
         setDeleteFixers,
         setEditFixers,
-        setDeletePhoto
+        setDeletePhoto,
+        modalFixers,
+        setModalFixers
     }}>
-      <Nav />
-        <div className="container">
-            <div className="row">
-                <div className="col-4">
-                    <Create />
-                </div>
-                <div className="col-8">
-                    <List />
-                </div>
+      {show === "create" ? (
+        <>
+          <Nav />
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className="col-6">
+                  <Create />
+              </div>
             </div>
-        </div>
+          </div>
+        </>
+      ) : show === "fixers" ? (
+        <>
+          <Nav />
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <div className="col-10">
+                  <List />
+              </div>
+            </div>
+          </div>
+          <Edit />
+        </>
+      ) : null}
     </BackContext.Provider>
   );
 }
